@@ -81,7 +81,9 @@ O **Desafio Monalisa** é um aplicativo de gerenciamento de vendas desenvolvido 
 - **`lib/`**: Contém o código-fonte do aplicativo.
   - `data/model/`: Modelos de dados como `Product`, `Sale`, e `ProductPagination`.
   - `services/`: Serviços como `ProductService` (gerenciamento de produtos) e `PaymentMethodService` (formas de pagamento).
-  - `pages/`: Arquivos de telas como `SalePage`, `HelpPage`, `AboutPage`, e `ImportDataPage`.
+  - `/presentation/pages/`: Arquivos de telas como `SalePage`, `HistoryPage`, `HelpPage`, `AboutPage`, e `ImportDataPage`.
+  - `/presentation/theme/`: Arquivos de tema `AppTheme.dark`, `AppTheme.light`.
+  - `/presentation/widgets/`: Widgets globais `desktop_layout_widget` e `mobile_layout_widget`.
 - **`assets/`**:
   - `images/logo.png`: Logotipo do aplicativo.
   - `dataset/produtos.json`: Dados iniciais dos produtos.

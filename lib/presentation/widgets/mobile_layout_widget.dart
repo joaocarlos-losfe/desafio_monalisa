@@ -58,10 +58,10 @@ class _MobileLayoutWidgetState extends State<MobileLayoutWidget> {
         },
         items: [
           _buildNavItem(Icons.home, 'Home', 0),
-          _buildNavItem(Icons.history, 'Vendas', 1),
-          _buildNavItem(Icons.download, 'Importar', 2),
-          _buildNavItem(Icons.help, 'Ajuda', 3),
-          _buildNavItem(Icons.info, 'Sobre', 4),
+          _buildNavItem(Icons.history_outlined, 'Vendas', 1),
+          _buildNavItem(Icons.download_outlined, 'Importar', 2),
+          _buildNavItem(Icons.help_outline, 'Ajuda', 3),
+          _buildNavItem(Icons.info_outline, 'Sobre', 4),
         ],
       ),
     );

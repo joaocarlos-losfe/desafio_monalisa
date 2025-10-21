@@ -58,7 +58,6 @@ class _AboutPageState extends State<AboutPage> {
                       ),
                     ),
                   ),
-                  // Ícone principal (pulsante sutil)
                   Container(
                     width: 120,
                     height: 120,
@@ -158,11 +157,6 @@ class _AboutPageState extends State<AboutPage> {
                   platform: 'macOS',
                   icon: Icons.laptop_mac,
                   color: Colors.grey.shade700,
-                ),
-                _buildPlatformRow(
-                  platform: 'Web',
-                  icon: Icons.language,
-                  color: Colors.orange,
                 ),
               ],
             ),

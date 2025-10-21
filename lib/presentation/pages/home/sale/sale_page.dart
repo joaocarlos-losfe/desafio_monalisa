@@ -635,7 +635,7 @@ class _SalePageState extends State<SalePage> {
         double width = constraints.maxWidth;
 
         if (width < 500) {
-          crossAxisCount = 1; // mobile
+          crossAxisCount = 2; // mobile
         } else if (width < 900) {
           crossAxisCount = 2; // tablet
         } else {
@@ -648,7 +648,11 @@ class _SalePageState extends State<SalePage> {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
-            childAspectRatio: 1.6,
+            childAspectRatio: width < 500
+                ? 0.8
+                : width < 900
+                ? 1.5
+                : 1.8,
           ),
           itemCount: _products.length,
           itemBuilder: (context, index) {

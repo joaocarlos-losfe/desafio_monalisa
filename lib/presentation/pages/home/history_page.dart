@@ -263,7 +263,7 @@ class _HistoryPageState extends State<HistoryPage> {
                     spots: _buildLineChartSpots(
                       (sale) => sale.total,
                       extraDays: 2,
-                    ), // <- 2 dias extra
+                    ), // <- 2 dias extras
                     isCurved: true,
                     color: Theme.of(context).colorScheme.secondary,
                     barWidth: 3,

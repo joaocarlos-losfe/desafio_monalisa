@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+	<dict>
+		<key>CFBundleTypeName</key>
+		<string>JSON File</string>
+		<key>LSItemContentTypes</key>
+		<array>
+		<string>public.json</string>
+		</array>
+	</dict>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Precisamos de acesso à galeria para selecionar arquivos JSON.</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>O app precisa acessar seus documentos para importar arquivos JSON.</string>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

@@ -41,8 +41,9 @@ class _DesktopLayoutWidgetState extends State<DesktopLayoutWidget> {
                     children: [
                       _buildNavItem(Icons.home, 'Home', 0),
                       _buildNavItem(Icons.history, 'Histórico de vendas', 1),
-                      _buildNavItem(Icons.help, 'Ajuda', 2),
-                      _buildNavItem(Icons.info, 'Sobre', 3),
+                      _buildNavItem(Icons.download, 'Importar dados', 2),
+                      _buildNavItem(Icons.help_outline, 'Ajuda', 3),
+                      _buildNavItem(Icons.info_outline, 'Sobre', 4),
                       Spacer(),
                       _buildFooter(),
                     ],

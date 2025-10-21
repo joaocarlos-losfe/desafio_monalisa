@@ -4,6 +4,7 @@ class Sale {
   final double total;
   final int totalItems;
   final Map<String, String> items;
+  final String? paymentMethod;
 
   Sale({
     required this.id,
@@ -11,6 +12,7 @@ class Sale {
     required this.total,
     required this.totalItems,
     required this.items,
+    this.paymentMethod,
   });
 
   Map<String, dynamic> toJson() => {
@@ -19,6 +21,7 @@ class Sale {
     'total': total,
     'totalItems': totalItems,
     'items': items,
+    'paymentMethod': paymentMethod,
   };
 
   factory Sale.fromJson(Map<String, dynamic> json) => Sale(
@@ -27,9 +30,14 @@ class Sale {
     total: json['total'].toDouble(),
     totalItems: json['totalItems'],
     items: Map<String, String>.from(json['items']),
+    paymentMethod: json['paymentMethod'],
   );
 
-  factory Sale.fromCart(Map<int, int> cartItems, double totalValue) {
+  factory Sale.fromCart(
+    Map<int, int> cartItems,
+    double totalValue,
+    String? paymentMethod,
+  ) {
     final items = <String, String>{};
     cartItems.forEach((barCode, qty) {
       items[barCode.toString()] = qty.toString();
@@ -40,6 +48,7 @@ class Sale {
       total: totalValue,
       totalItems: cartItems.values.fold(0, (sum, qty) => sum + qty),
       items: items,
+      paymentMethod: paymentMethod,
     );
   }
 

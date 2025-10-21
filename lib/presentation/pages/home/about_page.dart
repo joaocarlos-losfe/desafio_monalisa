@@ -117,7 +117,7 @@ class _AboutPageState extends State<AboutPage> {
                   icon: Icons.info_outline,
                   title: 'Descrição',
                   text:
-                      'Sistema completo de gerenciamento de vendas desenvolvido com Flutter. Permite cadastrar produtos, realizar vendas, controlar estoque e visualizar histórico com gráficos.',
+                      'Sistema completo de gerenciamento de vendas desenvolvido com Flutter. Permite realizar vendas, controlar estoque e visualizar histórico com gráficos.',
                 ),
                 _buildInfoCard(
                   icon: Icons.trending_up,
@@ -373,9 +373,6 @@ class _AboutPageState extends State<AboutPage> {
                 onPressed: () => _launchURL('https://github.com/issues'),
                 icon: const Icon(Icons.bug_report, size: 18),
                 label: const Text('Reportar Bug'),
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                ),
               ),
             ),
           ],

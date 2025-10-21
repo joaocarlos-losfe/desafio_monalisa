@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:desafio_monalisa/data/model/product.dart';
 import 'package:desafio_monalisa/data/model/sale.dart';
+import 'package:desafio_monalisa/services/payment_metodod.dart';
 import 'package:desafio_monalisa/services/product_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -34,12 +35,16 @@ class _SalePageState extends State<SalePage> {
   final int _perPage = 12;
   Timer? _debounce;
 
+  List<PaymentMethod> _paymentMethods = [];
+  String? _selectedPaymentMethod;
+
   int get cartCount => _cartItems.values.fold(0, (sum, qty) => sum + qty);
 
   @override
   void initState() {
     super.initState();
     _loadBrands();
+    _loadPaymentMethods();
     _loadProducts();
     _loadAllProductsForCart();
   }
@@ -61,6 +66,19 @@ class _SalePageState extends State<SalePage> {
       }
     } catch (e) {
       if (mounted) setState(() => _isLoadingBrands = false);
+    }
+  }
+
+  Future<void> _loadPaymentMethods() async {
+    try {
+      final methods = await PaymentMethodService.getPaymentMethods();
+      if (mounted) {
+        setState(() {
+          _paymentMethods = methods;
+        });
+      }
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 
@@ -147,12 +165,30 @@ class _SalePageState extends State<SalePage> {
 
   void _finalizeSale() async {
     if (_cartItems.isEmpty) return;
+    if (_selectedPaymentMethod == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          shape: Theme.of(ctx).cardTheme.shape,
+          title: const Text('Erro'),
+          content: const Text('Por favor, selecione uma forma de pagamento!'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
 
     await _loadAllProductsForCart();
 
     final total = _totalSale;
     final soldItems = Map<int, int>.from(_cartItems);
     final totalItems = cartCount;
+    final paymentMethod = _selectedPaymentMethod;
 
     final List<Product> updatedProducts = [];
     for (var entry in soldItems.entries) {
@@ -167,7 +203,7 @@ class _SalePageState extends State<SalePage> {
       updatedProducts.add(updatedProduct);
     }
 
-    await _saveSaleToHistory(total, soldItems, totalItems);
+    await _saveSaleToHistory(total, soldItems, totalItems, paymentMethod);
 
     setState(() {
       for (int i = 0; i < _products.length; i++) {
@@ -180,6 +216,7 @@ class _SalePageState extends State<SalePage> {
       }
       _cartItems.clear();
       _totalSale = 0.0;
+      _selectedPaymentMethod = null;
     });
 
     if (mounted) {
@@ -188,12 +225,13 @@ class _SalePageState extends State<SalePage> {
           content: Text(
             '✅ Venda finalizada! Estoque atualizado. R\$ ${total.toStringAsFixed(2)}',
           ),
-          duration: const Duration(seconds: 15),
+          duration: const Duration(seconds: 10),
           action: SnackBarAction(
             textColor: Theme.of(context).colorScheme.secondary,
             backgroundColor: Theme.of(context).cardColor,
             label: 'RELATÓRIO',
-            onPressed: () => _showSalesReport(total, soldItems, totalItems),
+            onPressed: () =>
+                _showSalesReport(total, soldItems, totalItems, paymentMethod),
           ),
         ),
       );
@@ -201,7 +239,12 @@ class _SalePageState extends State<SalePage> {
     }
   }
 
-  void _showSalesReport(double total, Map<int, int> soldItems, int totalItems) {
+  void _showSalesReport(
+    double total,
+    Map<int, int> soldItems,
+    int totalItems,
+    String? paymentMethod,
+  ) {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -227,6 +270,9 @@ class _SalePageState extends State<SalePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Data: ${DateTime.now().toString().substring(0, 16)}'),
+                  Text(
+                    'Forma de Pagamento: ${paymentMethod ?? 'Não especificada'}',
+                  ),
                   Text('Total: R\$ ${total.toStringAsFixed(2)}'),
                   Text('Itens: $totalItems'),
                   const Divider(),
@@ -344,8 +390,9 @@ class _SalePageState extends State<SalePage> {
     double total,
     Map<int, int> soldItems,
     int totalItems,
+    String? paymentMethod,
   ) async {
-    final newSale = Sale.fromCart(soldItems, total);
+    final newSale = Sale.fromCart(soldItems, total, paymentMethod);
 
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -601,7 +648,7 @@ class _SalePageState extends State<SalePage> {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
-            childAspectRatio: 1.8,
+            childAspectRatio: 1.6,
           ),
           itemCount: _products.length,
           itemBuilder: (context, index) {
@@ -684,7 +731,7 @@ class _SalePageState extends State<SalePage> {
                         Text(
                           ' ${product.quantityInStock}',
                           style: TextStyle(
-                            fontSize: 11,
+                            fontSize: 16,
                             color: isOutOfStock
                                 ? theme.colorScheme.error
                                 : theme.colorScheme.onSurface.withValues(
@@ -703,7 +750,7 @@ class _SalePageState extends State<SalePage> {
                   Expanded(
                     child: Text(
                       'R\$ ${product.price.toStringAsFixed(2)}',
-                      style: theme.textTheme.titleSmall?.copyWith(
+                      style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: theme.colorScheme.secondary,
                       ),
@@ -730,7 +777,7 @@ class _SalePageState extends State<SalePage> {
                             },
                             icon: Icon(
                               Icons.remove_circle_outline,
-                              size: 24,
+                              size: 28,
                               color: theme.colorScheme.secondary,
                             ),
                             padding: EdgeInsets.zero,
@@ -746,7 +793,7 @@ class _SalePageState extends State<SalePage> {
                             child: Text(
                               '$inCartQty',
                               style: const TextStyle(
-                                fontSize: 24,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -766,7 +813,7 @@ class _SalePageState extends State<SalePage> {
                           },
                           icon: Icon(
                             Icons.add_circle_outline,
-                            size: 24,
+                            size: 28,
                             color: theme.colorScheme.secondary,
                           ),
                           padding: EdgeInsets.zero,
@@ -809,19 +856,19 @@ class _SalePageState extends State<SalePage> {
             onPressed: _currentPage > 1 ? _loadPreviousPage : null,
             icon: Icon(
               Icons.arrow_back,
-              size: 16,
+              size: 24,
               color: theme.colorScheme.secondary,
             ),
           ),
           Text(
             '$_currentPage / $_totalPages',
-            style: const TextStyle(fontWeight: FontWeight.w600),
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
           ),
           IconButton(
             onPressed: _currentPage < _totalPages ? _loadNextPage : null,
             icon: Icon(
               Icons.arrow_forward,
-              size: 16,
+              size: 24,
               color: theme.colorScheme.secondary,
             ),
           ),
@@ -1131,6 +1178,27 @@ class _SalePageState extends State<SalePage> {
                               },
                             ),
                           ),
+                          if (_cartItems.isNotEmpty) ...[
+                            const SizedBox(height: 8),
+                            DropdownButtonFormField<String>(
+                              decoration: const InputDecoration(
+                                labelText: 'Forma de Pagamento',
+                                border: OutlineInputBorder(),
+                              ),
+                              initialValue: _selectedPaymentMethod,
+                              items: _paymentMethods.map((pm) {
+                                return DropdownMenuItem<String>(
+                                  value: pm.descricao,
+                                  child: Text(pm.descricao),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                setDialogState(() {
+                                  _selectedPaymentMethod = value;
+                                });
+                              },
+                            ),
+                          ],
                           Container(
                             padding: const EdgeInsets.all(16),
                             decoration: const BoxDecoration(

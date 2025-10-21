@@ -38,7 +38,7 @@ class _HistoryPageState extends State<HistoryPage> {
       if (jsonString != null && jsonString.isNotEmpty) {
         final List<dynamic> jsonList = json.decode(jsonString);
         final sales = jsonList.map((json) => Sale.fromJson(json)).toList();
-        if (mounted) setState(() => _sales = sales.reversed.toList());
+        if (mounted) setState(() => _sales = sales.toList());
       }
     } catch (_) {}
   }
@@ -428,7 +428,7 @@ class _HistoryPageState extends State<HistoryPage> {
           ),
         ),
         title: Text(
-          'R\$ ${sale.total.toStringAsFixed(2)}',
+          'R\$ ${sale.total.toStringAsFixed(2)}  ${sale.paymentMethod != null ? "| ${sale.paymentMethod}" : ""}',
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.bold,
           ),

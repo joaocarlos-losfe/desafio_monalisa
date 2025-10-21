@@ -132,41 +132,7 @@ class _HelpPageState extends State<HelpPage> {
                 ),
                 _buildTip(
                   'Animações Suaves',
-                  'Transições e efeitos visuais melhoram a experiência sem comprometer a performance.',
-                ),
-                _buildTip(
-                  'Ícones e Cores',
-                  'Interface consistente com ícones intuitivos e cores que seguem as diretrizes do Material Design.',
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-            _buildSection(
-              title: 'Multiplataforma',
-              content: [
-                _buildTip(
-                  'Android',
-                  'Funciona nativamente em smartphones e tablets Android com acesso completo a recursos do sistema.',
-                ),
-                _buildTip(
-                  'iOS',
-                  'Compatível com iPhone e iPad, aproveitando gestos nativos e SafeArea para evitar ',
-                ),
-                _buildTip(
-                  'Windows',
-                  'Versão desktop completa para computadores Windows.',
-                ),
-                _buildTip(
-                  'macOS',
-                  'Executa perfeitamente no Mac com integração ao sistema.',
-                ),
-                _buildTip(
-                  'Web',
-                  'Acesse pelo navegador em qualquer computador, sem necessidade de instalação.',
-                ),
-                _buildTip(
-                  'Sincronização',
-                  'Os dados são salvos localmente em cada plataforma.',
+                  'Transições e efeitos visuais melhoram a experiência do usuário.',
                 ),
               ],
             ),

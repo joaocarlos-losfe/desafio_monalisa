@@ -2,7 +2,7 @@
 
 ## Descrição
 
-O desafio consiste em dum aplicativo de gerenciamento de vendas desenvolvido com **Flutter**, projetado para ser uma solução completa e multiplataforma para vendas, controle de estoque e visualização de histórico de vendas. O aplicativo permite adicionar produtos ao carrinho, atualizar estoques, consultar históricos de vendas com filtros e gráficos, importar dados de produtos e histórico de vendas, e oferece uma interface responsiva que se adapta a dispositivos móveis, tablets e desktops.
+O desafio consiste em um aplicativo de gerenciamento de vendas desenvolvido com **Flutter**, projetado para ser uma solução completa e multiplataforma para vendas, controle de estoque e visualização de histórico de vendas. O aplicativo permite adicionar produtos ao carrinho, atualizar estoques, consultar históricos de vendas com filtros e gráficos, importar dados de produtos e histórico de vendas, e oferece uma interface responsiva que se adapta a dispositivos móveis, tablets e desktops.
 
 ### Principais Funcionalidades
 - **Página de Vendas**:

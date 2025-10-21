@@ -10,11 +10,11 @@
 		</data>
 		<key>Resources/flutter_assets/AssetManifest.bin</key>
 		<data>
-		CGwdIfKRs3L0PeL2eJUTGRCISNQ=
+		ak2OEThZv3WZfJflMIUpQqEw4jg=
 		</data>
 		<key>Resources/flutter_assets/AssetManifest.json</key>
 		<data>
-		iEgL7NV3TNTiTp9XUq0mVOTNGXU=
+		4AtbZS8fBtNIBpgpGWicAXjc/sk=
 		</data>
 		<key>Resources/flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,11 +22,15 @@
 		</data>
 		<key>Resources/flutter_assets/NOTICES.Z</key>
 		<data>
-		F6WcfZmTBJBKoIvH64pQ4UR9PlM=
+		JUTLIRqHaA3DP6xptF2ZOx3P6m4=
 		</data>
 		<key>Resources/flutter_assets/NativeAssetsManifest.json</key>
 		<data>
 		re4p7E8rPLLsN+wzaPN/+AVpXTY=
+		</data>
+		<key>Resources/flutter_assets/assets/dataset/formasPagamento.json</key>
+		<data>
+		fTPv3Lyxap+rmgmRbXiwQYEPCGU=
 		</data>
 		<key>Resources/flutter_assets/assets/dataset/produtos.json</key>
 		<data>
@@ -38,7 +42,7 @@
 		</data>
 		<key>Resources/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
-		f3N2BI6LRYTwY7dMoip1EM7C4S4=
+		1EdN9BF0YlLgVBbW8RUVCw/ByXI=
 		</data>
 		<key>Resources/flutter_assets/shaders/ink_sparkle.frag</key>
 		<data>
@@ -58,14 +62,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2R2VWKP8RwZh6nsWZAZsFoDCnQvJmxzrH1SNj9FFdg0=
+			T+6on8NwCG1tGdOhUNEa68pq1sNlypzfChPWaPFrREA=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jOQvNdAFMPwytjtFs8voI+EGl++IOTnHbruiJmJhH14=
+			LVpwNdvF9G8O3cbdXAy3Wo6ecdhEvK6QkLnJY997haU=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/FontManifest.json</key>
@@ -79,7 +83,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			p8kY5EQeGiBKnwl5dYRYc2HvXaiSvfJHKN8TAtlx9Ds=
+			P5lmgkHiIOLlYPIw0Zf2eW3BE3x21+Usr7UUk+I2f+w=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/NativeAssetsManifest.json</key>
@@ -87,6 +91,13 @@
 			<key>hash2</key>
 			<data>
 			lUijHkoEgTXB2U+Rkyi/tirix7s8q5ZVfHlB2ql3dss=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/assets/dataset/formasPagamento.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mRSkMNtAl0YsTqLVDQcEUyMWUecyaAFnEYJ5RfNPAg8=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/assets/dataset/produtos.json</key>
@@ -107,7 +118,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vCKD8ZgKvd/GdmHcZ3bgTxy9EMEwQoT9oG/Jho08l4Y=
+			o0kgc488QjsIcEls5nO5lIW6dXKg+I9ox8xCo7w9k4g=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/shaders/ink_sparkle.frag</key>

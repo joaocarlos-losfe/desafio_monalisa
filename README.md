@@ -39,7 +39,8 @@ O **Desafio Monalisa** é um aplicativo de gerenciamento de vendas desenvolvido 
 - **Flutter SDK**: Versão 3.9.0 ou superior.
 - **Dart**: Incluído com o Flutter.
 - **Ambiente de Desenvolvimento**: Visual Studio Code, Android Studio ou outro IDE compatível.
-- **Dispositivo ou Emulador**: Android, iOS, Windows ou macOS.
+- **Dispositivo ou Emulador (via coódigo) **: Android, iOS, Windows ou macOS.
+- **Executaveis disponiveis na pasta /executaveis**: Android (.apk), macOS (.app).
 
 ### Passos para Configuração
 1. **Clone o Repositório**:

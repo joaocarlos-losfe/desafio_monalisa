@@ -23,10 +23,10 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			i0eY3z9AvuWrG7p+qao4e6/0dHo=
+			Iw4Y5ozny2bVcuGQopCwEHRwPU8=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"8b4798df3f40bee5ab1bba7ea9aa387baff4747a" or cdhash H"f106eda963ecd15b1a2562ab85601935f437bdff"</string>
+			<string>cdhash H"230e18e68ce7cb66d572e190a290b01074703d4f" or cdhash H"aa5176ad5d8efa453fd6e9fd11b4aecb8abdd80d"</string>
 		</dict>
 		<key>Frameworks/FlutterMacOS.framework</key>
 		<dict>
@@ -36,6 +36,24 @@
 			</data>
 			<key>requirement</key>
 			<string>cdhash H"2e0887e06a02aec30be2321fef44b0d43f519438" or cdhash H"d23986fb0ebb7bdac00323651638962a1d8549bd"</string>
+		</dict>
+		<key>Frameworks/file_picker.framework</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			tcuolV4MHkePFGve6shoh/uMyxg=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"b5cba8955e0c1e478f146bdeeac86887fb8ccb18" or cdhash H"93f96f835ba05ae8569ed320b78e76f41581b710"</string>
+		</dict>
+		<key>Frameworks/path_provider_foundation.framework</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			Kk54s096/5RI6bQWgym7guK7p0w=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"2a4e78b34f7aff9448e9b4168329bb82e2bba74c" or cdhash H"210c62edaed27aedceaad2a3aff6d80437b145b3"</string>
 		</dict>
 		<key>Frameworks/shared_preferences_foundation.framework</key>
 		<dict>

@@ -98,95 +98,87 @@ class ProductCard extends StatelessWidget {
                           ),
                         ],
                       ),
+                      Expanded(
+                        child: Text(
+                          'R\$ ${product.price.toStringAsFixed(2)}',
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: theme.colorScheme.secondary,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        'R\$ ${product.price.toStringAsFixed(2)}',
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
+                if (!isOutOfStock)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      if (inCartQty > 0)
+                        IconButton(
+                          onPressed: () {
+                            onRemoveFromCart();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  '${product.shortDescription} removido!',
+                                ),
+                                duration: const Duration(milliseconds: 800),
+                                backgroundColor: theme.colorScheme.error,
+                              ),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.remove_circle_outline,
+                            size: 24,
+                            color: theme.colorScheme.secondary,
+                          ),
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(
+                            minWidth: 32,
+                            minHeight: 32,
+                          ),
+                          tooltip: 'Remover',
+                        ),
+                      if (inCartQty > 0)
+                        Text(
+                          '$inCartQty',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      IconButton(
+                        onPressed: () {
+                          onAddToCart();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                '${product.shortDescription} adicionado!',
+                              ),
+                              duration: const Duration(milliseconds: 800),
+                              backgroundColor: theme.colorScheme.secondary,
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.add_circle_outline,
+                          size: 24,
                           color: theme.colorScheme.secondary,
                         ),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(
+                          minWidth: 32,
+                          minHeight: 32,
+                        ),
+                        tooltip: 'Adicionar',
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    if (!isOutOfStock)
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (inCartQty > 0)
-                            IconButton(
-                              onPressed: () {
-                                onRemoveFromCart();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      '${product.shortDescription} removido!',
-                                    ),
-                                    duration: const Duration(milliseconds: 800),
-                                    backgroundColor: theme.colorScheme.error,
-                                  ),
-                                );
-                              },
-                              icon: Icon(
-                                Icons.remove_circle_outline,
-                                size: 24,
-                                color: theme.colorScheme.secondary,
-                              ),
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(
-                                minWidth: 32,
-                                minHeight: 32,
-                              ),
-                              tooltip: 'Remover',
-                            ),
-                          if (inCartQty > 0)
-                            Text(
-                              '$inCartQty',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          IconButton(
-                            onPressed: () {
-                              onAddToCart();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    '${product.shortDescription} adicionado!',
-                                  ),
-                                  duration: const Duration(milliseconds: 800),
-                                  backgroundColor: theme.colorScheme.secondary,
-                                ),
-                              );
-                            },
-                            icon: Icon(
-                              Icons.add_circle_outline,
-                              size: 24,
-                              color: theme.colorScheme.secondary,
-                            ),
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(
-                              minWidth: 32,
-                              minHeight: 32,
-                            ),
-                            tooltip: 'Adicionar',
-                          ),
-                        ],
-                      )
-                    else
-                      Icon(
-                        Icons.block,
-                        size: 20,
-                        color: theme.colorScheme.error,
-                      ),
-                  ],
-                ),
+                    ],
+                  )
+                else
+                  Icon(Icons.block, size: 20, color: theme.colorScheme.error),
               ],
             ),
           ),

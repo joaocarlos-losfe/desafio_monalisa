@@ -19,7 +19,9 @@ class _AboutPageState extends State<AboutPage> {
         title: const Text('Sobre'),
         actions: [
           IconButton(
-            onPressed: () => _launchURL('https://github.com'),
+            onPressed: () => _launchURL(
+              'https://github.com/joaocarlos-losfe/desafio_monalisa.git',
+            ),
             icon: const Icon(Icons.code),
             tooltip: 'Ver código fonte',
           ),
@@ -353,7 +355,8 @@ class _AboutPageState extends State<AboutPage> {
           children: [
             Expanded(
               child: ElevatedButton.icon(
-                onPressed: () => _launchURL('mailto:suporte@monalisa.com'),
+                onPressed: () =>
+                    _launchURL('mailto:joaocarlos.losfe@gmail.com'),
                 icon: const Icon(Icons.email, size: 18),
                 label: const Text('Email'),
                 style: ElevatedButton.styleFrom(
@@ -364,7 +367,9 @@ class _AboutPageState extends State<AboutPage> {
             const SizedBox(width: 12),
             Expanded(
               child: OutlinedButton.icon(
-                onPressed: () => _launchURL('https://github.com/issues'),
+                onPressed: () => _launchURL(
+                  'https://github.com/joaocarlos-losfe/desafio_monalisa.git',
+                ),
                 icon: const Icon(Icons.bug_report, size: 18),
                 label: const Text('Reportar Bug'),
               ),

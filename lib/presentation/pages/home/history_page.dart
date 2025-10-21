@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:desafio_monalisa/data/model/product.dart';
 import 'package:desafio_monalisa/data/model/sale.dart';
 import 'package:desafio_monalisa/services/product_service.dart';
@@ -102,59 +103,57 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final bool isMobile = Platform.isAndroid || Platform.isIOS;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Histórico (${_sales.length})'),
-        actions: [
-          if (_searchQuery.isNotEmpty)
-            IconButton(
-              onPressed: () => setState(() => _searchQuery = ''),
-              icon: const Icon(Icons.clear),
-            ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Pesquisar venda, produto ou data',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+    final pageContent = Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
+          child: TextField(
+            decoration: InputDecoration(
+              labelText: 'Pesquisar venda, produto ou data',
+              prefixIcon: const Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
-              onChanged: (v) => setState(() => _searchQuery = v),
             ),
+            onChanged: (v) => setState(() => _searchQuery = v),
           ),
-          _buildStatsSection(theme),
-          Expanded(
-            child: _isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : _filteredSales.isEmpty
-                ? _buildEmptyState()
-                : ListView.builder(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    itemCount: _filteredSales.length,
-                    itemBuilder: (context, index) {
-                      final sale = _filteredSales[index];
-                      return Animate(
-                        delay: (100 * index).ms,
-                        effects: const [
-                          FadeEffect(),
-                          SlideEffect(begin: Offset(0, 0.2)),
-                        ],
-                        child: _buildSaleCard(sale, theme),
-                      );
-                    },
+        ),
+        _buildStatsSection(theme),
+        Expanded(
+          child: _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : _filteredSales.isEmpty
+              ? _buildEmptyState()
+              : ListView.builder(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
                   ),
-          ),
-        ],
+                  itemCount: _filteredSales.length,
+                  itemBuilder: (context, index) {
+                    final sale = _filteredSales[index];
+                    return Animate(
+                      delay: (100 * index).ms,
+                      effects: const [
+                        FadeEffect(),
+                        SlideEffect(begin: Offset(0, 0.2)),
+                      ],
+                      child: _buildSaleCard(sale, theme),
+                    );
+                  },
+                ),
+        ),
+      ],
+    );
+
+    return Theme(
+      data: theme,
+      child: Scaffold(
+        body: isMobile
+            ? SafeArea(top: true, bottom: false, child: pageContent)
+            : pageContent,
       ),
     );
   }

@@ -23,7 +23,6 @@ class _ImportDataPageState extends State<ImportDataPage> {
     setState(() => _isLoading = true);
 
     try {
-      // Use file_picker to select a JSON file
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['json'],
@@ -38,19 +37,15 @@ class _ImportDataPageState extends State<ImportDataPage> {
         return;
       }
 
-      // Read the selected file
       final file = File(result.files.single.path!);
       final jsonString = await file.readAsString();
       final jsonData = json.decode(jsonString);
 
-      // Determine if the JSON is for products or sales history
       if (jsonData is List && jsonData.isNotEmpty) {
         if (jsonData.first.containsKey('CodigoBarras')) {
-          // Handle product data
           await _importProducts(jsonData);
         } else if (jsonData.first.containsKey('id') &&
             jsonData.first.containsKey('date')) {
-          // Handle sales history
           await _importSalesHistory(jsonData);
         } else {
           if (mounted) {
@@ -77,7 +72,6 @@ class _ImportDataPageState extends State<ImportDataPage> {
           .map((item) => Product.fromJson(item as Map<String, dynamic>))
           .toList();
 
-      // Add or update products in the service
       await ProductService.addOrUpdateProducts(products);
 
       if (mounted) {
